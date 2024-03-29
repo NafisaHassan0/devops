@@ -5,25 +5,19 @@ pipeline {
         stage('Build') {
             steps {
                 // Build Docker image
-                script {
-                    docker.build('my-node-app')
-                }
+                sh 'docker build -t my-node-app .'
             }
         }
         stage('Test') {
             steps {
                 // Run tests (if applicable)
-                script {
-                    // Add your test commands here
-                }
+                // Add your test commands here
             }
         }
         stage('Deploy') {
             steps {
-                // Deploy to Kubernetes (replace with your deployment commands)
-                script {
-                    sh 'kubectl apply -f kubernetes'
-                }
+                // Deploy to Kubernetes
+                sh 'kubectl apply -f kubernetes'
             }
         }
     }
