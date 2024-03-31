@@ -39,19 +39,17 @@ pipeline {
         stage('Build') {
             steps {
                 // Build Docker image
-                script {
-                    docker.build('my-node-app')
-                }
+                bat 'docker build -t my-node-app .'
             }
         }
+    
         stage('Deploy') {
             steps {
                 // Deploy to Kubernetes
-                script {
-                    sh 'kubectl apply -f kubernetes'
-                }
+                bat 'kubectl apply -f kubernetes'
             }
         }
     }
 }
+
 
